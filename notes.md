@@ -44,6 +44,88 @@ SMTP: Simple Mail Transfer Protocal, protocal used for sending email messages be
 
 # CONFIGURING LINUX SERVICES AND RUNLEVELS
 
+A typical Linux system can be configured to boot up into one of five *Runlevels*. During bootup, a process called *init* looks in the */etc/inittab* to find which runlevel the system should be booted to, and then it begins to execute the appropriate startup scripts to run the services required for the system. Both the runlevel and the services that get run at startup are configurable.
+
+## Inits and Runlevels
+
+A typical */etc/inittab* looks like this
+
+	# Default runlevel. The runlevels used by RHS are:
+	#   0 - halt (Do NOT set initdefault to this)
+	#   1 - Single user mode
+	#   2 - Multiuser, without NFS (The same as 3, if you do not have networking)
+	#   3 - Full multiuser mode
+	#   4 - unused
+	#   5 - X11
+	#   6 - reboot (Do NOT set initdefault to this)
+	#
+	id:3:initdefault:
+
+The last line tells the init process that the default runlevel is 3. 
+
+The different runlevels are
+
+0 - The Halt Runlevel at which the system shuts down; unlikely this should be your default.
+
+1 - The Single Runlevel. Causes system to start up in a single user moder under which only the root user can log in. Ideal for system admin to perform system maintenance or repair activities.
+
+2 - Multi-user Runlevel with text-based console login capability. Does not start the network.
+
+3 - Multi-user Runlevel with networking services started. Most common runlevel for server-based systems that do not require any kind of graphical desktop environment.
+
+4 - Undefined runlevel, can be configured to provide a custom boot state.
+
+5 - Boots the system into a networked, multi-user state with X Window System capability. By default the graphical desktop environment will start at the end of the boot. Most common runlevel for desktop or workstation use.  
+
+6 - Reboots the system. Another unlikely default runlevel.
+
+## Configuring Linux Services
+
+*It's a good policy to disable any unused services on the Linux system.*
+
+You can control which services you want started at boot time. 
+
+To list all service settings and see whether or not they are started up at various runlevels:
+	
+	/sbin/chkonfig --list
+
+To narrow down, for instance, the entry for the http daemon:
+
+	/sbin/chkconfig --list | grep httpd
+
+Or if you're interested in what gets started at runlevel 3:
+
+	/sbin/chkconfig --list | grep '3:on'
+
+To change settings, for example, to make HTTP service startup what at runlevel 5:
+
+	/sbin/chkconfig --level 5 httpd on
+
+# LINUX FIREWALL - SECOND LINE OF DEFENSE
+
+The first line of defense is the firewall on your router or cable modem.
+
+Now will learn how to configure security settings on your Linux system.
+
+## lokkit
+
+To change security settings of the Firewall installed on your stem, run *lokkit* command. But first must login as root or use the "su" command. If already super user, do:
+
+	/usr/sbin/lokkit
+
+If from a non-super user account:
+
+	su -c "/usr/sbin/lokkit"
+
+Based on your selections, *lokkit* will configure the firewall to allow access to the appropriate ports. Also provides option of specifying trusted devices on the "Configure" screen. You could then, for instance, disable the firewall settings for any connections coming from devices connected to the trusted or secure network while applying the firewall rules to devices connected to the untrusted network. 
+
+# WIRELESS LINUX SECURITY
+
+If wireless security is neglected, all your other precautions will be for nothing.
+
+
+
+
 
 
 
