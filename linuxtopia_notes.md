@@ -123,6 +123,46 @@ Based on your selections, *lokkit* will configure the firewall to allow access t
 
 If wireless security is neglected, all your other precautions will be for nothing.
 
+Wireless data is breadcast through radio waves; while an ethernet cable is almost impossible to intercept, a wifi network can potentially be snooped on by anyone.
+
+Wireless networks are protected from attacks by using encryption. Breaking encryption can be so difficult that a hacker will likely just move on to the many unprotected networks and ignore yours. You can't keep the data from spreading out of the building, short of encasing the building in lead, so settle for encrypting that data; so although anyone can see the data, not just anyone can read it without the encryption key.
+
+## Encryption
+
+The encrypted form of the data is known as *cythertext*. 
+
+Wireless networks use *symmetrical encryption* in which the same key is used at both ends of the network connection. The key is specified by you when you configure the encryption for your wireless network. 
+
+WiFi wireless networks use a security standard called *Wired Equivalent Privacy (WEP)* whose aim is to provide the equivalent security of a wired network. In practice this is not always possible. 
+
+Wireless encryption can be configured as either 64-bit or 128-bit. Refers to the lengh of the key; hence, 128-bit encryption is stronger. But stronger encryption can impact network performance because more time is spent encrypting and decrypting at each end of communication. In practice, the performance difference is small and 128-bits is encouraged.
+
+Encryption keys are specified in *hexadecimal*, using a base of 16 (digits between 0-9 and A-F).
+
+	64-bits: 10 digit key
+	128-bits: 26 digit key
+
+## Configuring Wireless Security
+
+Once you have configured your wireless base station to use WEP encryptions, next will need to configure the wireless adaptor on your linux system to use the same encryption key.
+
+On RedHat:
+
+	redhat-config-network
+
+On Fedora Core:
+
+	system-config-network
+
+To set up the encryption, enter the 26 digit key set up on your wireless base station.  
+
+	Since hexadecimal, key should be prefixed with 0x
+
+
+
+
+
+
 
 
 
